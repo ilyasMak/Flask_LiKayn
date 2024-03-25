@@ -1,0 +1,75 @@
+
+{% extends 'base.html' %}
+{% block navbar %}   <div class="container-fluid nav-bar bg-transparent">
+    <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
+        <a href="#" class="navbar-brand d-flex align-items-center text-center">
+            <div class="icon p-2 me-2">
+                <img class="img-fluid" src="{{ url_for('static', filename='img/logo.png') }}" alt="Icon" style="width: 30px; height: 30px;">
+ 
+            </div>
+            <h1 class="m-0 text-primary">LiKayn</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto">
+                <a href="#" class="nav-item nav-link active">Home</a>
+                <a href="#write" class="nav-item nav-link">Write a message</a>
+               
+               
+                <a href="#fot" class="nav-item nav-link">Contact</a>
+            </div>
+            <a href="/sign" class="btn btn-primary px-3 d-none d-lg-flex">Login</a>
+        </div>
+    </nav>
+ </div>{% endblock%}
+ 
+
+{%block header %}  <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+    <div class="col-md-6 p-5 mt-lg-5">
+        <h1 class="display-5 animated fadeIn mb-4">Send a message to <span class="text-primary">{{fn}} {{ln}}</span> and let him/her know how you see him/her."</h1>
+        <p class="animated fadeIn mb-4 pb-2">{{fn}} cannot know who wrote the message. Be honest, he will know you only if you write your name.</p>
+        <a href="/sign" class="btn btn-primary py-3 px-5 me-3 animated fadeIn">Create your acount</a>
+    </div>
+    <div class="col-md-6 animated fadeIn">
+        <div class="owl-carousel header-carousel">
+            <div class="owl-carousel-item">
+                <img class="img-fluid" src="{{ url_for('static', filename='img/im.png') }}" alt="">
+            </div>
+            <div class="owl-carousel-item">
+                <img class="img-fluid" src="{{ url_for('static', filename='img/im.png') }}" alt="">
+            </div>
+        </div>
+    </div>
+    
+ </div> {%endblock%}
+{% block send %}
+
+<div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;" id="write">
+    <div class="container">
+        <form action="/Send/{{id}}" method="POST">
+        <div class="row g-2">
+            <div class="col-md-10">
+                <div class="row g-2">
+                  
+                    <div class="col-md-3"> <!-- Utilisez col-md-3 pour 25% de la largeur sur un écran moyen et plus grand -->
+                        <input type="text" class="form-control border-0 py-3" placeholder="Your name if you want" name="name">
+                    </div>
+                    <div class="col-md-6"> <!-- Utilisez col-md-6 pour 50% de la largeur sur un écran moyen et plus grand -->
+                        <textarea rows="12" placeholder="write a message" class="form-control border-0 py-6" name="Msg"></textarea>
+                    </div>
+                    <div class="col-md-3"> <!-- Utilisez col-md-3 pour 25% de la largeur sur un écran moyen et plus grand -->
+                        <button type="submit" class="btn btn-dark border-0 w-100 py-3">Send</button>
+                    </div>
+                
+                </div>
+            </div>
+       
+        </div></form>
+        
+    </div>
+</div>
+
+{% endblock %}
+

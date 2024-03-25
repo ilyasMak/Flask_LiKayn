@@ -1,0 +1,75 @@
+
+{% extends 'base.html' %}
+{% block navbar %}  <div class="container-fluid nav-bar bg-transparent">
+   <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
+       <a href="#" class="navbar-brand d-flex align-items-center text-center">
+           <div class="icon p-2 me-2">
+               <img class="img-fluid" src="{{ url_for('static', filename='img/logo.png') }}" alt="Icon" style="width: 30px; height: 30px;">
+
+           </div>
+           <h1 class="m-0 text-primary">LiKayn</h1>
+       </a>
+       <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+           <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarCollapse">
+           <div class="navbar-nav ms-auto">
+               <a href="#" class="nav-item nav-link active">Home</a>
+               <a href="#msgs" class="nav-item nav-link">See messages</a>
+              
+              
+               <a href="#fot" class="nav-item nav-link">Contact</a>
+           </div>
+           <a href="/logout" class="btn btn-primary px-3 d-none d-lg-flex">Log out</a>
+       </div>
+   </nav>
+</div>{% endblock%}
+
+
+{%block header %}  <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+   <div class="col-md-6 p-5 mt-lg-5">
+       <h1 class="display-5 animated fadeIn mb-4">Hello <span class="text-primary">{{fn}} {{ln}}</span> , are you ready to discover what others have written about you?</h1>
+       <p class="animated fadeIn mb-4 pb-2">Through this URL, individuals can write messages to you :<strong> http://127.0.0.1:5000/sendMsg/{{id}} </strong></p>
+       <a href="/delete/{{id}}" class="btn btn-primary py-3 px-5 me-3 animated fadeIn">Delete account</a>
+   </div>
+   <div class="col-md-6 animated fadeIn">
+       <div class="owl-carousel header-carousel">
+           <div class="owl-carousel-item">
+               <img class="img-fluid" src="{{ url_for('static', filename='img/im.png') }}" alt="">
+           </div>
+           <div class="owl-carousel-item">
+               <img class="img-fluid" src="{{ url_for('static', filename='img/im.png') }}" alt="">
+           </div>
+       </div>
+   </div>
+   
+</div> {%endblock%}
+{% block Receive %}
+
+<div class="container-xxl py-5" id="msgs">
+   <div class="container">
+       <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+           <h1 class="mb-3">What are people saying about you?!</h1>
+           <p>One person can write more than one message, and people can use different names. </div>
+
+       <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+        {% for message in msgs %}
+           <div class="testimonial-item bg-light rounded p-3">
+               <div class="bg-white border rounded p-4">
+                   <p>{{ message[2] }}</p>
+                   <div class="d-flex align-items-center">
+                    <img class="img-fluid flex-shrink-0 rounded" src="{{ url_for('static', filename='img/unknown.PNG') }}" style="width: 45px; height: 45px;">
+
+                       <div class="ps-3">
+                           <h6 class="fw-bold mb-1">{{ message[1] }}</h6>
+                           <small>Someone</small>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           {% endfor %}
+        
+       </div>
+   </div>
+</div>
+{% endblock %}
